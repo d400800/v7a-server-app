@@ -8,14 +8,16 @@ import { AuthModule } from './auth/auth.module';
 const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOSTNAME, MONGO_PORT, MONGO_DB } =
   process.env;
 
+const connectionString = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}`;
+const connectionStringDev = `mongodb://admin:example@localhost:27017`;
+
+console.log(connectionString);
+
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}`,
-      {
-        dbName: MONGO_DB,
-      },
-    ),
+    MongooseModule.forRoot(connectionStringDev, {
+      dbName: MONGO_DB,
+    }),
     UsersModule,
     AuthModule,
   ],
