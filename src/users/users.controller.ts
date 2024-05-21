@@ -20,7 +20,6 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @Public()
   @HttpCode(HttpStatus.OK)
   async findAll(): Promise<UserDto[]> {
     return this.usersService.getAllUsers();
