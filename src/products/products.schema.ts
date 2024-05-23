@@ -15,7 +15,10 @@ export class Product extends Document {
   unit: string;
 
   @Prop({ required: true })
-  userId: string;
+  companyId: string;
+
+  @Prop({ required: true })
+  category: string;
 }
 
 export const ProductsSchema = SchemaFactory.createForClass(Product);

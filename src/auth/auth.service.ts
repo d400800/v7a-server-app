@@ -21,6 +21,7 @@ export class AuthService {
       sub: user._id.toString(),
       role: user.role,
       username: user.name,
+      companyId: user.companyId,
     };
 
     return {

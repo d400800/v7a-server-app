@@ -35,6 +35,10 @@ export class UserDto {
 
   @IsString()
   @IsOptional()
+  readonly companyId: string;
+
+  @IsString()
+  @IsOptional()
   name: string;
 
   @IsEmail()

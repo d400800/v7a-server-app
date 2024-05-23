@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './products.schema';
 import { Model } from 'mongoose';
-import { CreateProductDto } from './dtos/product.dto';
+import { CreateProductDto, ProductDto } from './dtos/product.dto';
 
 @Injectable()
 export class ProductsRepository {
@@ -10,16 +10,24 @@ export class ProductsRepository {
     @InjectModel(Product.name) private productModel: Model<Product>,
   ) {}
 
-  find() {
-    return this.productModel.find().exec();
+  find(companyId: string) {
+    return this.productModel.find({ companyId }).exec();
   }
 
-  createProduct(createProductDto: CreateProductDto, userId: string) {
+  createProduct(createProductDto: CreateProductDto, companyId: string) {
     const createdProduct = new this.productModel({
       ...createProductDto,
-      userId,
+      companyId,
     });
 
     return createdProduct.save();
+  }
+
+  update(id: string, productDto: ProductDto) {
+    return this.productModel.findOneAndUpdate({ _id: id }, productDto);
+  }
+
+  delete(id: string) {
+    return this.productModel.deleteOne({ _id: id });
   }
 }

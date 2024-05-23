@@ -15,6 +15,10 @@ export class ProductDto {
   @IsOptional()
   title: string;
 
+  @IsString()
+  @IsOptional()
+  category: string;
+
   @IsEnum(Unit)
   @IsOptional()
   unit: string;
@@ -28,4 +32,14 @@ export class CreateProductDto {
   @IsEnum(Unit)
   @IsNotEmpty()
   unit: string;
+
+  @IsString()
+  @IsNotEmpty()
+  category: string;
+}
+
+export class DeleteProductDto {
+  @IsString()
+  @IsNotEmpty()
+  readonly id: string;
 }

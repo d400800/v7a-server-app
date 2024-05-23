@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
+import { CompaniesModule } from './companies/companies.module';
 
 const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOSTNAME, MONGO_PORT, MONGO_DB } =
   process.env;
@@ -22,6 +23,7 @@ console.log(connectionString);
     UsersModule,
     AuthModule,
     ProductsModule,
+    CompaniesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

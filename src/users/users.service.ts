@@ -23,6 +23,7 @@ export class UsersService {
       role: user.role,
       password: user.password,
       id: user._id,
+      companyId: user.companyId,
     }));
   }
 
