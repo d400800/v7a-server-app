@@ -1,4 +1,5 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { BaseDto } from '../../shared/base.dto';
 
 enum Unit {
   kilogram = 'kilogram',
@@ -6,21 +7,17 @@ enum Unit {
   none = 'none',
 }
 
-export class ProductDto {
+export class ProductDto extends BaseDto {
   @IsString()
-  @IsOptional()
   readonly id: string;
 
   @IsString()
-  @IsOptional()
   title: string;
 
   @IsString()
-  @IsOptional()
   category: string;
 
   @IsEnum(Unit)
-  @IsOptional()
   unit: string;
 }
 

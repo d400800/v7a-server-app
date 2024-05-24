@@ -1,9 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  CreateProductDto,
-  DeleteProductDto,
-  ProductDto,
-} from './dtos/product.dto';
+import { CreateProductDto, ProductDto } from './dtos/product.dto';
 import { ProductsRepository } from './products.repository';
 
 @Injectable()
@@ -18,6 +14,8 @@ export class ProductsService {
       title: product.title,
       unit: product.unit,
       category: product.category,
+      createdAt: product.createdAt,
+      updatedAt: product.updatedAt,
     }));
   }
 
