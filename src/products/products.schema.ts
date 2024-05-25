@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { BaseSchema } from '../shared/base.schema';
 
 @Schema({ timestamps: true })
-export class Product extends Document {
+export class Product extends BaseSchema {
   @Prop({ required: true })
   title: string;
 
@@ -15,16 +15,7 @@ export class Product extends Document {
   unit: string;
 
   @Prop({ required: true })
-  companyId: string;
-
-  @Prop({ required: true })
   category: string;
-
-  @Prop()
-  createdAt?: Date;
-
-  @Prop()
-  updatedAt?: Date;
 }
 
 export const ProductsSchema = SchemaFactory.createForClass(Product);

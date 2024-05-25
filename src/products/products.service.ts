@@ -1,33 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductDto, ProductDto } from './dtos/product.dto';
+import { ProductDto } from './dtos/product.dto';
 import { ProductsRepository } from './products.repository';
+import { BaseService } from '../shared/base.service';
+import { Product } from './products.schema';
 
 @Injectable()
-export class ProductsService {
-  constructor(private productRepository: ProductsRepository) {}
+export class ProductsService extends BaseService<Product, ProductDto> {
+  constructor(private productRepository: ProductsRepository) {
+    super(productRepository);
+  }
 
-  async getAllProducts(companyId: string): Promise<ProductDto[]> {
-    const products = await this.productRepository.find(companyId);
-
-    return products.map((product) => ({
-      id: product._id,
+  protected toDto(product: Product): ProductDto {
+    return {
+      id: product._id.toString(),
       title: product.title,
       unit: product.unit,
       category: product.category,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
-    }));
-  }
-
-  createProduct(createProductDto: CreateProductDto, companyId: string) {
-    return this.productRepository.createProduct(createProductDto, companyId);
-  }
-
-  update(id: string, productDto: ProductDto) {
-    return this.productRepository.update(id, productDto);
-  }
-
-  delete(id: string) {
-    return this.productRepository.delete(id);
+    };
   }
 }

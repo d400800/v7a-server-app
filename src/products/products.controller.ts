@@ -1,18 +1,18 @@
 import {
   BadRequestException,
   Body,
-  Controller, Delete,
+  Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
   Patch,
   Post,
-  Req
-} from "@nestjs/common";
+  Req,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { CreateProductDto, DeleteProductDto, ProductDto } from "./dtos/product.dto";
-import { DeleteUserDto } from "../users/dtos/user.dtos";
+import { CreateProductDto, ProductDto } from './dtos/product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -23,7 +23,7 @@ export class ProductsController {
   async findAll(@Req() req): Promise<ProductDto[]> {
     const companyId = req.user.companyId;
 
-    return this.productsService.getAllProducts(companyId);
+    return this.productsService.findAll(companyId);
   }
 
   @Post()
@@ -31,11 +31,14 @@ export class ProductsController {
   async createProduct(@Req() req, @Body() createProductDto: CreateProductDto) {
     const companyId = req.user.companyId;
 
-    return this.productsService.createProduct(createProductDto, companyId);
+    return this.productsService.create(createProductDto, companyId);
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() productDto: ProductDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() productDto: Partial<ProductDto>,
+  ) {
     if (!id) {
       throw new BadRequestException('Id is not specified');
     }

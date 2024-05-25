@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { CompaniesModule } from './companies/companies.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOSTNAME, MONGO_PORT, MONGO_DB } =
   process.env;
@@ -24,6 +25,7 @@ console.log(connectionString);
     AuthModule,
     ProductsModule,
     CompaniesModule,
+    ShoppingListModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,33 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Product } from './products.schema';
 import { Model } from 'mongoose';
-import { CreateProductDto, ProductDto } from './dtos/product.dto';
+import { BaseRepository } from '../shared/base.repository';
+import { Product } from './products.schema';
 
 @Injectable()
-export class ProductsRepository {
+export class ProductsRepository extends BaseRepository<Product> {
   constructor(
-    @InjectModel(Product.name) private productModel: Model<Product>,
-  ) {}
-
-  find(companyId: string) {
-    return this.productModel.find({ companyId }).exec();
-  }
-
-  createProduct(createProductDto: CreateProductDto, companyId: string) {
-    const createdProduct = new this.productModel({
-      ...createProductDto,
-      companyId,
-    });
-
-    return createdProduct.save();
-  }
-
-  update(id: string, productDto: ProductDto) {
-    return this.productModel.findOneAndUpdate({ _id: id }, productDto);
-  }
-
-  delete(id: string) {
-    return this.productModel.deleteOne({ _id: id });
+    @InjectModel(Product.name) private readonly productModel: Model<Product>,
+  ) {
+    super(productModel);
   }
 }

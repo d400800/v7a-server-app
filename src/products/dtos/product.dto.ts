@@ -34,9 +34,3 @@ export class CreateProductDto {
   @IsNotEmpty()
   category: string;
 }
-
-export class DeleteProductDto {
-  @IsString()
-  @IsNotEmpty()
-  readonly id: string;
-}
