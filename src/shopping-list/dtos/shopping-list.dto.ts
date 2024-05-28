@@ -21,6 +21,9 @@ export class ShoppingListDto extends BaseDto {
   @IsString()
   productId: string;
 
+  @IsString()
+  productTitle?: string;
+
   @IsNumber()
   amount: number;
 }

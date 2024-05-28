@@ -19,6 +19,7 @@ export class ShoppingListService extends BaseService<
       amount: item.amount,
       createdAt: item.createdAt,
       updatedAt: item.updatedAt,
+      productTitle: item.productTitle,
     };
   }
 }

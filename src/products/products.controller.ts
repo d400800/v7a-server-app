@@ -23,7 +23,7 @@ export class ProductsController {
   async findAll(@Req() req): Promise<ProductDto[]> {
     const companyId = req.user.companyId;
 
-    return this.productsService.findAll(companyId);
+    return this.productsService.findAll({ companyId });
   }
 
   @Post()

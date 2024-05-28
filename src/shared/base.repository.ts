@@ -4,8 +4,8 @@ import { BaseSchema } from './base.schema';
 export class BaseRepository<T extends BaseSchema> {
   constructor(private readonly model: Model<T>) {}
 
-  async find(companyId: string): Promise<T[]> {
-    return this.model.find({ companyId }).exec();
+  async find(query: any): Promise<T[]> {
+    return this.model.find(query).exec();
   }
 
   async findOne(query: any) {

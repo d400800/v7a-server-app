@@ -13,6 +13,6 @@ import { UsersModule } from '../users/users.module';
   ],
   controllers: [ProductsController],
   providers: [ProductsService, ProductsRepository],
-  exports: [ProductsService],
+  exports: [ProductsService, MongooseModule],
 })
 export class ProductsModule {}

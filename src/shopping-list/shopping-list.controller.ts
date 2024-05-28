@@ -26,7 +26,7 @@ export class ShoppingListController {
   async findAll(@Req() req): Promise<ShoppingListDto[]> {
     const companyId = req.user.companyId;
 
-    return this.shoppingListService.findAll(companyId);
+    return this.shoppingListService.findAll({ companyId });
   }
 
   @Post()
