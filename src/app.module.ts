@@ -12,13 +12,13 @@ const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOSTNAME, MONGO_PORT, MONGO_DB } =
   process.env;
 
 const connectionString = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}`;
-const connectionStringDev = `mongodb://admin:example@localhost:27017`;
+//const connectionStringDev = `mongodb://admin:example@localhost:27017`;
 
-console.log(connectionString);
+console.log('connectionString:', connectionString);
 
 @Module({
   imports: [
-    MongooseModule.forRoot(connectionStringDev, {
+    MongooseModule.forRoot(connectionString, {
       dbName: MONGO_DB,
     }),
     UsersModule,
