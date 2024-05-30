@@ -2,7 +2,7 @@
 FROM node:18
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /home/benjamin/v7a-server-app
 
 # Install app dependencies by copying
 # package.json and package-lock.json
