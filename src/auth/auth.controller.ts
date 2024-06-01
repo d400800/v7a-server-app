@@ -29,7 +29,7 @@ export class AuthController {
     res.cookie('access_token', access_token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'strict',
+      sameSite: 'none',
     });
 
     return res.send({
@@ -42,7 +42,7 @@ export class AuthController {
     res.cookie('access_token', '', {
       httpOnly: true,
       secure: true,
-      sameSite: 'strict',
+      sameSite: 'none',
       expires: new Date(0),
     });
 
