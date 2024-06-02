@@ -20,21 +20,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Public()
   @Post('login')
-  async signIn(@Res() res: Response, @Body() signInDto: SignInDto) {
-    const { access_token } = await this.authService.signIn(
-      signInDto.username,
-      signInDto.password,
-    );
-
-    res.cookie('access_token', access_token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-    });
-
-    return res.send({
-      message: 'Login successful',
-    });
+  signIn(@Body() signInDto: SignInDto) {
+    return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
   @Post('logout')
