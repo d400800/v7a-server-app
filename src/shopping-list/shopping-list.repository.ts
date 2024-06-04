@@ -44,6 +44,7 @@ export class ShoppingListRepository extends BaseRepository<ShoppingList> {
         {
           $addFields: {
             productTitle: '$product.title', // Include the product title in the output
+            productUnit: '$product.unit',
           },
         },
         {
@@ -54,6 +55,7 @@ export class ShoppingListRepository extends BaseRepository<ShoppingList> {
             createdAt: 1,
             updatedAt: 1,
             productTitle: 1,
+            productUnit: 1,
           },
         },
       ])
