@@ -20,6 +20,10 @@ export class CreateUserDto {
   @IsEmail()
   @IsNotEmpty()
   readonly email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly companyId: string;
 }
 
 export class DeleteUserDto {

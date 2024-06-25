@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dtos/companies.dtos';
+import { Public } from '../auth/is-public.decorator';
 
 @Controller('companies')
 export class CompaniesController {
@@ -21,6 +22,7 @@ export class CompaniesController {
   }
 
   @Post()
+  @Public()
   async createCompany(
     @Body() createCompanyDto: CreateCompanyDto,
   ): Promise<string> {
