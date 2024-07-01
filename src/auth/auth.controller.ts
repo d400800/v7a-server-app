@@ -19,6 +19,13 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Public()
+  @Get('health-check')
+  healthCheck() {
+    return 'OK';
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Public()
   @Post('login')
   signIn(@Body() signInDto: SignInDto) {
     return this.authService.signIn(signInDto.username, signInDto.password);
