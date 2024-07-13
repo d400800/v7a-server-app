@@ -3,7 +3,7 @@ services:
   app:
     container_name: nestjs_app
     restart: always
-    image: d400800/nestjs_app:0.0.5
+    image: d400800/nestjs_app:0.0.17
     ports:
       - '3000:3000'
     depends_on:
