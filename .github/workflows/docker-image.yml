@@ -26,18 +26,18 @@ jobs:
 
     - name: Build and push Docker image
       env:
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         TIMESTAMP=$(date +%s)
         IMAGE_NAME=nestjs_app:$TIMESTAMP
-        DOCKERHUB_REPO=$password/nestjs_app:$TIMESTAMP
+        DOCKERHUB_REPO=${DOCKERHUB_USERNAME}/nestjs_app:$TIMESTAMP
         
         # Build the Docker image
         docker build . --file Dockerfile --tag $IMAGE_NAME
         
         # Log in to Docker Hub
-        echo $password | docker login -u "$username" --password-stdin
+        echo $DOCKERHUB_TOKEN | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
         
         # Tag the Docker image
         docker tag $IMAGE_NAME $DOCKERHUB_REPO
