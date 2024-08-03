@@ -23,8 +23,11 @@ jobs:
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-    
+
     - name: Build and push Docker image
+      with:
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
       run: |
         TIMESTAMP=$(date +%s)
         IMAGE_NAME=nestjs_app:$TIMESTAMP
@@ -34,7 +37,7 @@ jobs:
         docker build . --file Dockerfile --tag $IMAGE_NAME
         
         # Log in to Docker Hub
-        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        echo "${{ password }}" | docker login -u "${{ username }}" --password-stdin
         
         # Tag the Docker image
         docker tag $IMAGE_NAME $DOCKERHUB_REPO
