@@ -43,13 +43,15 @@ export class AuthController {
   }
 
   @Post('logout')
-  async logout(@Res() res: Response) {
+  async logout(@Req() req, @Res() res: Response) {
     res.cookie('access_token', '', {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
       expires: new Date(0),
     });
+
+    this.logger.log(`Log-out: ${req.user.username}`, this);
 
     return res.send({
       message: 'Logout successful',
