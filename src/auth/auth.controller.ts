@@ -37,6 +37,8 @@ export class AuthController {
   @Public()
   @Post('login')
   signIn(@Body() signInDto: SignInDto) {
+    this.logger.log(`Log-in: ${signInDto.username}`, this);
+
     return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
